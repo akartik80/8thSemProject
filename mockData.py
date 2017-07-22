@@ -8,7 +8,7 @@ row = ["city", "moving_from", "bhk", "min_budget", "max_budget", "cutomer_type",
 
 print (", ".join(row))
 
-for i in range(1, 50000):
+for i in range(1, 100000):
   row = []
   rand = random()
   

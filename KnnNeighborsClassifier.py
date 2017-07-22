@@ -36,7 +36,7 @@ def read_data (f, header = True, test = False):
   return (data, labels)
 
 
-train, labels = read_data("/home/okutech/training.csv")
+train, labels = read_data("/home/okutech/training100000.csv")
 test, test_label = read_data("/home/okutech/testing.csv")
 knn = KNeighborsClassifier(n_neighbors = 5, algorithm="kd_tree")
 train_mat = np.mat(train)

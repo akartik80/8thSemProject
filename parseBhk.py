@@ -1,27 +1,20 @@
-with open("/home/okutech/repos/8thSemProject/data/testing.csv") as file:
-  count = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-  total = 0
+import csv
 
-  for line in file:
-    largest = 0
-    bhkString = line.split(",")[2]
-    for character in bhkString:
-      if character.isdigit() and int(character) > largest:
-        largest = int(character)
+file = csv.reader(open("/home/okutech/Desktop/kartik.csv", "r"), delimiter=",")
 
-    if "RK" in bhkString or "rk" in bhkString:
-      count[0] += 1
-    else:
-      count[largest] += 1
+for line in file:
+  bhkString = line[2]
+  largest = 0
 
-    total += 1
+  if bhkString == 'bhk':
+    print 'bhk'
+    continue
+  
+  for character in bhkString:
+    if character.isdigit() and int(character) > largest:
+      largest = int(character)
 
-  for i in range(0, len(count)):
-    count[i] = count[i] / total
-
-  cumulative = [count[0]]
-
-  for i in range(1, len(count)):
-    cumulative.append(count[i] + cumulative[i - 1])
-
-  print(cumulative)
+  if ("RK" in bhkString or "rk" in bhkString) and ("bhk" not in bhkString or "BHK" not in bhkString):
+    print 1
+  else:
+    print largest + 1

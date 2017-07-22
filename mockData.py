@@ -1,6 +1,14 @@
 from random import random
 
-for i in range(1, 10):
+row = []
+
+row = ["city", "moving_from", "bhk", "min_budget", "max_budget", "cutomer_type", "workers", "no_of_cars",
+  "house_type", "travelling_time", "furnishing", "lease_type", "seen_other_options", "show_old_construction",
+  "status", "is_urgent", "state"]
+
+print (", ".join(row))
+
+for i in range(1, 50000):
   row = []
   rand = random()
   
@@ -12,7 +20,7 @@ for i in range(1, 10):
   else:
     row.append(3)
 
-  # relocating from
+  # moving from
   if rand < 0.55897:
     row.append(1)
   elif rand < 0.78995:
@@ -21,88 +29,141 @@ for i in range(1, 10):
     row.append(3)
 
   # bhk
-  if rand < 0.04169:
-    row.append(1) # 1RK
-  elif rand < 0.32574:
-    row.append(2) # 1BHK
-  elif rand < 0.84346:
+  if rand < 0.53399:
     row.append(3) # 2BHK
-  elif rand < 0.98518:
+  elif rand < 0.75348:
     row.append(4) # 3BHK
-  elif rand < 0.99893:
+  elif rand < 0.92974:
+    row.append(2) # 1BHK
+  elif rand < 0.96899:
+    row.append(1) # 1RK
+  elif rand < 0.99786:
     row.append(5) # 4BHK
   else:
     row.append(6) # 5BHK
-
-  # customer type
-  if rand < 0.30247:
-    row.append(1)
-  elif rand < 0.44393:
-    row.append(2)
-  elif rand < 0.47952:
-    row.append(3)
+    
 
   # min budget --------------- ensure < max budget
   
   if rand < 0.34479:
     row.append(15000)
+    minBudget = 15000
   elif rand < 0.59242:
     row.append(20000)
+    minBudget = 20000
   elif rand < 0.69272:
     row.append(25000)
+    minBudget = 25000
   elif rand < 0.75833:
     row.append(30000)
+    minBudget = 30000
   elif rand < 0.8008:
     row.append(10000)
+    minBudget = 10000
   elif rand < 0.8367:
     row.append(18000)
+    minBudget = 18000
   elif rand < 0.8836:
     row.append(35000)
+    minBudget = 35000
   elif rand < 0.89995:
     row.append(16000)
+    minBudget = 16000
   elif rand < 0.91614:
     row.append(40000)
+    minBudget = 40000
   elif rand < 0.93111:
     row.append(22000)
+    minBudget = 22000
   elif rand < 0.93798:
     row.append(17000)
+    minBudget = 17000
   else:
     row.append(20000)
+    minBudget = 20000
 
   # max budget
 
   if rand < 0.2348:
-    row.append(15000)
+    if minBudget > 15000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(15000)
   elif rand < 0.42056:
-    row.append(20000)
+    if minBudget > 20000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(20000)
   elif rand < 0.56141:
-    row.append(25000)
+    if minBudget > 25000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(25000)
   elif rand < 0.65842:
-    row.append(30000)
+    if minBudget > 30000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(30000)
   elif rand < 0.71204:
-    row.append(18000)
+    if minBudget > 18000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(18000)
   elif rand < 0.75329:
-    row.append(35000)
+    if minBudget > 35000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(35000)
   elif rand < 0.78598:
-    row.append(16000)
+    if minBudget > 16000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(16000)
   elif rand < 0.81714:
-    row.append(22000)
+    if minBudget > 22000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(22000)
   elif rand < 0.84342:
-    row.append(40000)
+    if minBudget > 40000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(40000)
   elif rand < 0.86695:
-    row.append(17000)
+    if minBudget > 17000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(17000)
   elif rand < 0.88559:
-    row.append(50000)
+    if minBudget > 50000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(50000)
   elif rand < 0.89903:
-    row.append(23000)
+    if minBudget > 23000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(23000)
   elif rand < 0.91171:
-    row.append(45000)
+    if minBudget > 45000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(45000)
   elif rand < 0.9221:
-    row.append(28000)
+    if minBudget > 28000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(28000)
   elif rand < 0.93142:
-    row.append(24000)
+    if minBudget > 24000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(24000)
   else:
-    row.append(23000)
+    if minBudget > 23000:
+      row.append(minBudget + 5000)
+    else: 
+      row.append(23000)
 
   # customer type
 
@@ -121,7 +182,7 @@ for i in range(1, 10):
   else:
     row.append(3)
 
-  # no of members
+  # workers
 
   if rand < 0.37504:
     row.append(2)

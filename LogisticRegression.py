@@ -8,11 +8,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import cross_val_score
 from sklearn.metrics import roc_auc_score
+from sklearn.preprocessing import label_binarize
 
-used_cols = ['city', 'moving_from','bhk', 'min_budget','max_budget',
-            'customer_type', 'workers','no_of_cars', 'house_type', 'travelling_time',
-            'furnishing', 'lease_type','seen_other_options','show_old_construction',
-            'status', 'is_urgent','state'];
+used_cols = ['city','bhk','max_budget',
+            'house_type','furnishing','state'];
 
 def read_data (f, header = True, test = False):
   data = []
@@ -27,7 +26,7 @@ def read_data (f, header = True, test = False):
     
     if not test:
       rowx = []
-      labels.append(np.int64(int(row[16])-1))
+      labels.append(np.int64(int(row[5])-1))
       for i in range(0, len(used_cols)-1):
         if row[i] == '':
           print index
@@ -36,9 +35,8 @@ def read_data (f, header = True, test = False):
   return (data, labels)
 
 
-train, labels = read_data("/home/okutech/training.csv")
-test, test_label = read_data("/home/okutech/testing.csv")
-knn = KNeighborsClassifier(n_neighbors = 100, algorithm="kd_tree")
+train, labels = read_data("data/training.csv")
+test, test_label = read_data("data/testing.csv")
 train_mat = np.mat(train)
 test_mat = np.mat(test)
 logreg = LogisticRegression(C=2.0)
@@ -52,8 +50,13 @@ for i in range(0, len(test_label)):
     count = count + 1
 
 cv_score = cross_val_score(logreg, train_mat, labels, cv=5, scoring='roc_auc')
+
+labels = label_binarize(labels, classes=[0, 1])
+n_classes = labels.shape[1]
+
 print "Number of correct labels = ",count
 print "The Roc_auc_score is = " , roc_auc_score(test_label, predict_labels)
 print "Mean value of Cross_validation score =", np.mean(cv_score)
 print "Max value of Cross_validation score =", np.max(cv_score)
 print "Standard deviation of Cross_validation score =", np.std(cv_score)
+print "Accuracy as per testing data = " ,accuracy_score(test_label, predict)
